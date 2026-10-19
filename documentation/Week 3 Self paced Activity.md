@@ -1,4 +1,4 @@
-**Week 3 Self-Paced Guide: Building GUI Applications with Swing** 
+**Week 3 Self-Paced Guide: Building GUI Applications with Swing**
 
 **Complete Student Handbook — No Instructor Required** 
 
