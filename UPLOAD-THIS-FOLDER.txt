@@ -1,0 +1,2 @@
+Upload the complete Week10-University-Management-System folder to your existing GitHub repository.
+The Maven project is inside the UniversitySystem subfolder. Open UniversitySystem in VS Code.

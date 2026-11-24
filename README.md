@@ -1,41 +1,61 @@
-# Event-Driven Programming in Java
+# University Management System
+## Week 10 Final Project – Event-Driven Architecture
 
-Hands-on practical activities, guides, and implementations for Event-Driven Programming (EDP) and GUI development in Java.
+A JavaFX and MySQL University Management System demonstrating the Week 10 learning outcomes.
 
-## Documentation Directory
+### Learning outcomes
+- **LO1 – EDA Principles:** Separates the JavaFX interface from the MySQL database through `DatabaseUtil`.
+- **LO2 – Producer-Consumer:** Uses JavaFX `Task` objects to load and save student records in background threads.
+- **LO3 – Scheduled Tasks:** Uses `ScheduledExecutorService` to print a system heartbeat every five seconds.
+- **LO4 – Event Communication:** Uses JavaFX button events, observable properties and bindings.
 
-All comprehensive self-paced student handbooks are organized in the [`documentation/`](documentation/) directory:
-- [Week 1 Self-Paced Practical Activities](documentation/Week%201%20Self%20paced%20Activity.md)
-- [Week 3 Self-Paced GUI Application Guide](documentation/Week%203%20Self%20paced%20Activity.md)
+### Requirements
+- JDK 17
+- Apache Maven
+- MySQL Server and MySQL Workbench
+- Visual Studio Code with Java and Maven extensions (or another Java IDE)
 
----
+### Database setup
+1. Open MySQL Workbench and connect to your local MySQL server.
+2. Open `database/university_db.sql`.
+3. Execute the complete script.
+4. Check that the `university_db` database and its `programs` and `students` tables exist.
 
-## Repository Contents
+### Database credentials
+The application reads these environment variables:
+- `MYSQL_URL` (optional; default: `jdbc:mysql://localhost:3306/university_db`)
+- `MYSQL_USER` (optional; default: `root`)
+- `MYSQL_PASSWORD` (set this to your own local MySQL password)
 
-### [Week 1: Fundamentals of Event-Driven Programming](Week1_Activity/)
-- **Student Handbook:** [documentation/Week 1 Self paced Activity.md](documentation/Week%201%20Self%20paced%20Activity.md)
-- **Activity 1:** Scavenger Hunt & Real-World EDP Systems Analysis ([SelfAssessment.md](Week1_Activity/SelfAssessment.md))
-- **Activity 2:** Physical Simulation of the Event Queue and Event Loop ([SelfAssessment.md](Week1_Activity/SelfAssessment.md))
-- **Activity 3:** Procedural vs. Event-Driven Side-by-Side Comparison
-  - Procedural Implementation: [`ProceduralCalculator.java`](Week1_Activity/ProceduralCalculator.java)
-  - Event-Driven Swing Implementation: [`EventDrivenCalculator.java`](Week1_Activity/EventDrivenCalculator.java)
-- **Activity 4: Bug Fix Challenge** ([BugFixChallenge/](Week1_Activity/BugFixChallenge/))
-  - Fixed EDT blocking, missing listener, background thread UI mutation, and memory leak bugs ([BugFixes.md](Week1_Activity/BugFixChallenge/BugFixes.md))
-- **Activity 5: Design Your Own Event-Driven System**
-  - Design Document: [`SystemDesign.md`](Week1_Activity/SystemDesign.md)
-  - Working Swing Prototype: [`SmartHomePrototype.java`](Week1_Activity/SmartHomePrototype.java)
-- **Activity 6:** Final Self-Assessment and Summary ([SelfAssessment.md](Week1_Activity/SelfAssessment.md))
+Do not commit your real database password to GitHub.
 
----
+### Run the application
+Open the `UniversitySystem` folder (the folder containing `pom.xml`) in VS Code, then run this command in the terminal:
 
-### [Week 2: The Observer Pattern](Week02-observer-pattern/)
-- Custom observer implementation and weather station demo
-- Legacy `java.util.Observer` comparison
-- Self-assessment: [SelfAssessment.md](Week02-observer-pattern/SelfAssessment.md)
+```bash
+mvn clean javafx:run
+```
 
----
+The application opens on the Dashboard. Select **Students**, enter a registration number, first name and last name, then select **Save Student**. The table should refresh after the record is saved. The terminal prints a heartbeat message every five seconds.
 
-### [Week 3: Building GUI Applications with Swing](week03-swing-gui/)
-- **Student Handbook:** [documentation/Week 3 Self paced Activity.md](documentation/Week%203%20Self%20paced%20Activity.md)
-- Layout managers, component arrangements, and Swing Event Dispatch Thread (EDT) safety
-- Self-assessment: [SelfAssessment.md](week03-swing-gui/SelfAssessment.md)
+### Project structure
+```text
+UniversitySystem/
+├── database/
+│   └── university_db.sql
+├── src/
+│   └── main/
+│       ├── java/com/university/
+│       │   ├── App.java
+│       │   ├── DatabaseUtil.java
+│       │   ├── Student.java
+│       │   ├── LoadStudentsTask.java
+│       │   ├── StudentController.java
+│       │   └── MainController.java
+│       └── resources/com/university/
+│           ├── MainView.fxml
+│           └── StudentView.fxml
+├── pom.xml
+├── .gitignore
+└── README.md
+```
